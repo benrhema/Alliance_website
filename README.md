@@ -33,6 +33,20 @@ Default is **light** (orange & white). Use **Dark mode** in the nav to switch to
 - Voting: https://safe-vote-upgrade.vercel.app
 - CanteenPro: https://ben2.pythonanywhere.com
 
+## Deploying on PythonAnywhere (ben2)
+
+**Full guide:** see [PYTHONANYWHERE.md](PYTHONANYWHERE.md)
+
+Quick steps on https://www.pythonanywhere.com/user/ben2/ :
+
+1. Bash: `git clone https://github.com/benrhema/Alliance_website.git`
+2. Web tab → point WSGI to `pythonanywhere_wsgi.py` (copy into `/var/www/ben2_pythonanywhere_com_wsgi.py`)
+3. Static files: `/static/` → `/home/ben2/Alliance_website/staticfiles`
+4. Bash: `cd ~/Alliance_website && bash deploy_pythonanywhere.sh`
+5. **Reload** the web app
+
+Site: **https://ben2.pythonanywhere.com** · Admin: **https://ben2.pythonanywhere.com/admin/login/**
+
 ## Deploying on Render (recommended)
 
 Your repo is ready for [Render](https://render.com) with GitHub auto-deploy.
@@ -67,38 +81,7 @@ Your repo is ready for [Render](https://render.com) with GitHub auto-deploy.
 
 ## Deploying on PythonAnywhere
 
-1. Upload this project (or clone from Git) into your PythonAnywhere account.
-2. Create a **Web** app → Manual configuration → Python 3.10+.
-3. In the virtualenv: `pip install -r requirements.txt`
-4. Set **Working directory** to the project folder.
-5. **WSGI** file — point `path` to your project and set:
-
-```python
-import os
-import sys
-
-path = '/home/YOURUSERNAME/alliance_website'  # adjust
-if path not in sys.path:
-    sys.path.append(path)
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'alliance_website.settings'
-
-from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
-```
-
-6. In a Bash console on PythonAnywhere:
-
-```bash
-cd ~/alliance_website
-python manage.py migrate
-python manage.py seed_admin_portal
-python manage.py collectstatic --noinput
-```
-
-7. **Static files:** Web tab → Static files → URL `/static/` → directory `.../staticfiles`
-8. Set `DEBUG = False` and `ALLOWED_HOSTS = ['yourusername.pythonanywhere.com']` in `settings.py` (or use environment variables).
-9. Reload the web app.
+See [PYTHONANYWHERE.md](PYTHONANYWHERE.md) for the full `ben2` deployment guide.
 
 ## Project structure
 

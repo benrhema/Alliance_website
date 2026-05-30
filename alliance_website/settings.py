@@ -21,6 +21,13 @@ RENDER_HOST = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_HOST:
     ALLOWED_HOSTS.append(RENDER_HOST)
 
+# PythonAnywhere (set PYTHONANYWHERE=true and PA_USERNAME=ben2 on the server)
+PYTHONANYWHERE = os.environ.get('PYTHONANYWHERE', '').lower() in ('true', '1', 'yes')
+PA_USERNAME = os.environ.get('PA_USERNAME', 'ben2')
+PA_DOMAIN = f'{PA_USERNAME}.pythonanywhere.com'
+if PYTHONANYWHERE:
+    ALLOWED_HOSTS.append(PA_DOMAIN)
+
 CSRF_TRUSTED_ORIGINS = [
     o.strip()
     for o in os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',')
@@ -28,6 +35,8 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 if RENDER_HOST:
     CSRF_TRUSTED_ORIGINS.append(f'https://{RENDER_HOST}')
+if PYTHONANYWHERE:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{PA_DOMAIN}')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -113,9 +122,11 @@ USE_TZ = True
 # ── Production hardening ──────────────────────────────────────────────
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_SSL_REDIRECT = True
+    # PythonAnywhere terminates SSL at the proxy — avoid redirect loops
+    SECURE_SSL_REDIRECT = not PYTHONANYWHERE
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
+    if not PYTHONANYWHERE:
+        SECURE_HSTS_SECONDS = 31536000
+        SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+        SECURE_HSTS_PRELOAD = True
