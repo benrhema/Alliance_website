@@ -1,0 +1,26 @@
+[
+  {
+    "id": "member-1",
+    "name": "Alliance Member",
+    "photo": "images/team/member-1.png",
+    "role": ""
+  },
+  {
+    "id": "member-2",
+    "name": "Alliance Member",
+    "photo": "images/team/member-2.png",
+    "role": ""
+  },
+  {
+    "id": "cedric-n",
+    "name": "Cedric N",
+    "photo": "images/team/cedric-n.png",
+    "role": ""
+  },
+  {
+    "id": "heritier-i",
+    "name": "Heritier I",
+    "photo": "images/team/heritier-i.png",
+    "role": ""
+  }
+]

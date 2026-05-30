@@ -1,0 +1,62 @@
+{% extends 'alliance/admin_portal_base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <header class="portal-header">
+    <h1>Dashboard</h1>
+    <p>Overview of connect-form submissions from investors and partners.</p>
+  </header>
+
+  <div class="portal-stats">
+    <div class="portal-stat-card highlight">
+      <h3>Unread</h3>
+      <div class="num">{{ unread_count }}</div>
+    </div>
+    <div class="portal-stat-card">
+      <h3>Total submissions</h3>
+      <div class="num dark">{{ total_count }}</div>
+    </div>
+    <div class="portal-stat-card">
+      <h3>Quick action</h3>
+      <a href="{% url 'admin_portal_submissions' %}" class="portal-btn-sm" style="display:inline-block;margin-top:8px;text-decoration:none;">Review all →</a>
+    </div>
+  </div>
+
+  <div class="portal-panel">
+    <div class="portal-panel-head">
+      <h2>Recent submissions</h2>
+      <a href="{% url 'admin_portal_submissions' %}" class="portal-btn-sm outline" style="text-decoration:none;">View all</a>
+    </div>
+    <table class="portal-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Purpose</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in last_submissions %}
+          <tr>
+            <td>{{ s.submitted_at|date:'d M Y, H:i' }}</td>
+            <td>{{ s.full_name }}</td>
+            <td>{{ s.get_purpose_display }}</td>
+            <td>
+              {% if s.is_read %}
+                <span class="portal-pill portal-pill-read">Read</span>
+              {% else %}
+                <span class="portal-pill portal-pill-unread">Unread</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4" style="color:rgba(255,255,255,0.4);padding:2rem;">No submissions yet. Share the Connect page with investors.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

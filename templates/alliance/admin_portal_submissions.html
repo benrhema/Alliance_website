@@ -1,0 +1,80 @@
+{% extends 'alliance/admin_portal_base.html' %}
+
+{% block title %}Submissions{% endblock %}
+
+{% block content %}
+  <header class="portal-header">
+    <h1>Submissions</h1>
+    <p>Messages from the Connect form. Mark as read when you've followed up.</p>
+  </header>
+
+  <div class="portal-panel">
+    <table class="portal-table">
+      <thead>
+        <tr>
+          <th style="width:36px;"></th>
+          <th>Date</th>
+          <th>Contact</th>
+          <th>Purpose</th>
+          <th>Status</th>
+          <th style="width:120px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in submissions %}
+          <tr>
+            <td>
+              {% if not s.is_read %}
+                <input type="checkbox" name="ids" value="{{ s.id }}" form="bulk-mark-form" aria-label="Select {{ s.full_name }}" />
+              {% endif %}
+            </td>
+            <td>{{ s.submitted_at|date:'d M Y, H:i' }}</td>
+            <td>
+              <strong style="color:#fff;">{{ s.full_name }}</strong><br/>
+              <span style="color:rgba(255,255,255,0.45);font-size:12px;">{{ s.email }}{% if s.phone %} · {{ s.phone }}{% endif %}{% if s.location %} · {{ s.location }}{% endif %}</span>
+            </td>
+            <td>{{ s.get_purpose_display }}{% if s.company %}<br/><span style="font-size:12px;color:rgba(255,255,255,0.4);">{{ s.company }}</span>{% endif %}</td>
+            <td>
+              {% if s.is_read %}
+                <span class="portal-pill portal-pill-read">Read</span>
+              {% else %}
+                <span class="portal-pill portal-pill-unread">Unread</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if not s.is_read %}
+                <form method="post" action="{% url 'admin_portal_mark_as_read' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="id" value="{{ s.id }}" />
+                  <button type="submit" class="portal-btn-sm">Mark read</button>
+                </form>
+              {% else %}
+                <span style="color:rgba(255,255,255,0.25);">—</span>
+              {% endif %}
+            </td>
+          </tr>
+          <tr class="portal-detail-row">
+            <td colspan="6">
+              <strong>Message:</strong> {{ s.message }}
+              {% if s.location %}<br/><strong>Location:</strong> {{ s.location }}{% endif %}
+              {% if s.donation_amount %}<br/><strong>Donation:</strong> {{ s.donation_amount }}{% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6" style="padding:2rem;color:rgba(255,255,255,0.4);">No submissions yet.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% if submissions %}
+      <form id="bulk-mark-form" method="post" action="{% url 'admin_portal_submissions' %}" class="portal-toolbar">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="mark_as_read" />
+        <span style="font-size:13px;color:rgba(255,255,255,0.45);">Select unread rows above, then mark as read.</span>
+        <button type="submit" class="portal-btn-sm">Mark selected as read</button>
+      </form>
+    {% endif %}
+  </div>
+{% endblock %}

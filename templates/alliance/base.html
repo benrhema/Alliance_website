@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}The Alliance{% endblock %}</title>
+  <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png"/>
+  <script>
+    (function () {
+      var t = localStorage.getItem('alliance-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="{% url 'home' %}" class="nav-logo">
+        <img src="{% static 'images/logo.png' %}" alt="The Alliance" class="logo-img" width="42" height="42"/>
+        <span>The Alliance</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}#about">About</a></li>
+        <li><a href="{% url 'home' %}#projects">Projects</a></li>
+        <li><a href="{% url 'home' %}#achievements">Achievements</a></li>
+        <li><a href="{% url 'home' %}#team">Team</a></li>
+        <li><a href="{% url 'home' %}#roadmap">Roadmap</a></li>
+        <li class="nav-actions">
+          <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+            <span class="theme-toggle-label">Dark mode</span>
+          </button>
+          <a href="{% url 'connect' %}" class="nav-cta">Connect With Us</a>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <button type="button" class="theme-toggle" data-theme-toggle style="width:100%;margin-bottom:8px;">
+        <span class="theme-toggle-label">Dark mode</span>
+      </button>
+      <a href="{% url 'home' %}#about">About</a>
+      <a href="{% url 'home' %}#projects">Projects</a>
+      <a href="{% url 'home' %}#achievements">Achievements</a>
+      <a href="{% url 'home' %}#team">Team</a>
+      <a href="{% url 'home' %}#roadmap">Roadmap</a>
+      <a href="{% url 'connect' %}" class="mobile-cta">Connect With Us</a>
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="{% static 'images/logo.png' %}" alt="" class="logo-img" width="40" height="40"/>
+        <div>
+          <div class="footer-name">The Alliance</div>
+          <div class="footer-sub">Student Tech Startup · Kigali, Rwanda</div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="{% url 'home' %}#projects">Projects</a>
+        <a href="https://safe-vote-upgrade.vercel.app" target="_blank" rel="noopener">Voting System</a>
+        <a href="https://ben2.pythonanywhere.com" target="_blank" rel="noopener">CanteenPro</a>
+        <a href="{% url 'home' %}#team">Team</a>
+        <a href="{% url 'connect' %}">Connect</a>
+      </div>
+      <div class="footer-copy">© 2025 The Alliance. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/theme.js' %}"></script>
+  <script src="{% static 'js/particles.js' %}" defer></script>
+  <script src="{% static 'js/main.js' %}" defer></script>
+  <script src="{% static 'js/interactions.js' %}" defer></script>
+  <script src="{% static 'js/team-roles-admin.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

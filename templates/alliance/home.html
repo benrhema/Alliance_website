@@ -1,0 +1,314 @@
+{% extends 'alliance/base.html' %}
+{% load static %}
+
+{% block title %}The Alliance — Student Tech Startup · Rwanda{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="particles-wrap" data-particles aria-hidden="true">
+    <canvas data-particles data-particle-color="234, 88, 12"></canvas>
+  </div>
+  <div class="hero-grid-overlay"></div>
+  <div class="container hero-inner">
+    <div class="hero-logo-wrap">
+      <img src="{% static 'images/logo.png' %}" alt="The Alliance logo" class="hero-logo-img"/>
+    </div>
+    <div class="hero-tag">
+      <span class="dot"></span> Student Tech Startup · Kigali, Rwanda
+    </div>
+    <h1 class="hero-title">We Build Tech<br/><span class="hero-accent">That Matters.</span></h1>
+    <p class="hero-sub">
+      A 12-member team that started in Grade 10 with a shared passion for code.
+      Three years later, we have deployed real products, won national championships,
+      and we're formalizing into a company.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary btn-magnetic" data-ripple>See Our Work</a>
+      <a href="{% url 'connect' %}" class="btn btn-outline btn-magnetic" data-ripple>Partner With Us</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-n" data-count="12">12</span><span class="stat-l">Team Members</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-n">8+</span><span class="stat-l">Products Built</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-n">3 Yrs</span><span class="stat-l">In the Making</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-n">1st</span><span class="stat-l">Nationals, Robotics</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-tag">Our Story</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-title">From a Classroom<br/>to a Company.</h2>
+        <p>It started in Grade 10 — ten students united by curiosity and a shared obsession with building things. What began as after-school coding sessions grew into something none of us fully planned: a team that ships real software, wins national competitions, and is now formalizing as a registered tech company.</p>
+        <p>In our senior year we expanded to 12, bringing in two members dedicated to marketing and strategy. Every product we've built has been deployed in a real environment, used by real people. That's not a coincidence — it's our standard.</p>
+        <a href="{% url 'connect' %}" class="btn btn-primary" style="margin-top:1.5rem;">Work With Us</a>
+      </div>
+      <div class="about-cards">
+        <div class="about-card" data-tilt>
+          <div class="about-card-icon">💡</div>
+          <h3>Problem First</h3>
+          <p>Every product we build starts with a real problem we see around us — in our school, our community, our country.</p>
+        </div>
+        <div class="about-card" data-tilt>
+          <div class="about-card-icon">🚀</div>
+          <h3>We Ship</h3>
+          <p>We don't just prototype. Our voting system runs real elections. Our news platform is live. We build to deploy.</p>
+        </div>
+        <div class="about-card" data-tilt>
+          <div class="about-card-icon">🌍</div>
+          <h3>Rwanda First</h3>
+          <p>Our solutions are designed for the Rwandan context first — then built to scale across Africa and beyond.</p>
+        </div>
+        <div class="about-card" data-tilt>
+          <div class="about-card-icon">🤝</div>
+          <h3>Team of 12</h3>
+          <p>10 engineers across frontend, backend and hardware. 2 strategists handling growth and partnerships.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section section-dark" id="projects">
+  <div class="container">
+    <div class="section-tag light">Our Work</div>
+    <h2 class="section-title light">Products &amp; Projects</h2>
+    <p class="section-sub light">Eight products built while still in high school — each one solving a real problem.</p>
+    <div class="projects-grid">
+
+      <div class="project-card" data-tilt>
+        <div class="project-header">
+          <div class="project-icon">🗳️</div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <h3>Digital Voting System</h3>
+        <p>A secure digital voting platform deployed in our school elections and adopted by Intare School — scalable for any institution.</p>
+        <div class="project-tags"><span>Web App</span><span>Deployed</span><span>B2B</span></div>
+        <a href="https://safe-vote-upgrade.vercel.app" class="project-live-link" target="_blank" rel="noopener noreferrer">Visit live system →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">📰</div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <h3>School News &amp; Announcements</h3>
+        <p>A unified news hub and admin announcement portal keeping students and staff informed in real time.</p>
+        <div class="project-tags"><span>Web App</span><span>Deployed</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🎭</div>
+          <span class="badge badge-beta">Beta</span>
+        </div>
+        <h3>Auditorium Booking System</h3>
+        <p>Eliminates scheduling conflicts for our school auditorium with a smart booking and management interface.</p>
+        <div class="project-tags"><span>Web App</span><span>Beta</span></div>
+      </div>
+
+      <div class="project-card" data-tilt>
+        <div class="project-header">
+          <div class="project-icon">🍽️</div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <h3>CanteenPro</h3>
+        <p>A full canteen stock and operations management system built for school cafeterias — live and in use.</p>
+        <div class="project-tags"><span>Web App</span><span>Deployed</span></div>
+        <a href="https://ben2.pythonanywhere.com" class="project-live-link" target="_blank" rel="noopener noreferrer">Visit CanteenPro →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">👨‍👩‍👧</div>
+          <span class="badge badge-beta">Beta</span>
+        </div>
+        <h3>Visitation Day Portal</h3>
+        <p>Streamlines parent-student communication and coordination during visitation days at boarding schools.</p>
+        <div class="project-tags"><span>Web App</span><span>Beta</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">💊</div>
+          <span class="badge badge-dev">In Dev</span>
+        </div>
+        <h3>National Pharmacy System</h3>
+        <p>A comprehensive healthcare management platform targeting nationwide pharmacy adoption across Rwanda.</p>
+        <div class="project-tags"><span>Healthcare</span><span>National Scale</span></div>
+      </div>
+
+      <div class="project-card featured">
+        <div class="project-header">
+          <div class="project-icon">🚁</div>
+          <span class="badge badge-dev">In Dev</span>
+        </div>
+        <h3>Autonomous Media Drone</h3>
+        <p>Our flagship hardware-software project — an autonomous drone that secured 1st place at the National Robotics Championship.</p>
+        <div class="project-tags"><span>Hardware</span><span>🏆 1st Nationals</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🥽</div>
+          <span class="badge badge-planned">Planned</span>
+        </div>
+        <h3>VR Experience Project</h3>
+        <p>An immersive virtual reality solution designed to transform education — starting at our school and scaling beyond.</p>
+        <div class="project-tags"><span>Hardware</span><span>EdTech</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="section" id="achievements">
+  <div class="container">
+    <div class="section-tag">Recognition</div>
+    <h2 class="section-title">What We've Won<br/>and Built.</h2>
+    <div class="achievements-grid">
+      <div class="achievement-card gold">
+        <div class="ach-medal">🥇</div>
+        <h3>National Robotics Championship</h3>
+        <p>First place nationally with our autonomous drone — competing against schools across Rwanda.</p>
+      </div>
+      <div class="achievement-card silver">
+        <div class="ach-medal">🥈</div>
+        <h3>Innovation Fair</h3>
+        <p>Second place at the national innovation fair, affirming the quality and originality of our work.</p>
+      </div>
+      <div class="achievement-card">
+        <div class="ach-medal">🏫</div>
+        <h3>School Integration</h3>
+        <p>Two products — the voting system and news platform — are live in daily school operations.</p>
+      </div>
+      <div class="achievement-card">
+        <div class="ach-medal">🤝</div>
+        <h3>B2B Expansion</h3>
+        <p>Our Digital Voting System was adopted by Intare School — our first external client partnership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section section-subtle" id="team">
+  <div class="container">
+    <div class="section-tag">The People</div>
+    <h2 class="section-title">12 People.<br/>One Mission.</h2>
+    <p class="section-sub">Meet part of our team below. Click each role field to type their position — it saves in your browser, or edit <code style="font-size:12px;">static/data/team.json</code> for everyone.</p>
+
+    <div class="team-grid">
+      {% for member in team_members %}
+        <article class="team-member-card" data-tilt>
+          <div class="team-member-photo">
+            <img src="{% static member.photo %}" alt="{{ member.name }}" loading="lazy"/>
+          </div>
+          <div class="team-member-info">
+            <h3>{{ member.name }}</h3>
+            <span
+              class="team-role-edit"
+              contenteditable="true"
+              spellcheck="false"
+              data-team-role="{{ member.id }}"
+              data-initial-role="{{ member.role }}"
+              data-placeholder="Click to add role…"
+              title="Click to edit role"
+            >{% if member.role %}{{ member.role }}{% else %}Click to add role…{% endif %}</span>
+            <p class="team-role-hint">e.g. Lead Developer, Marketing</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <p class="team-spotlight-note">
+      <strong>10 engineers</strong> and <strong>2 strategists</strong> make up our full roster of 12 — more profiles coming as we grow the company.
+    </p>
+
+    <div class="team-roles" style="margin-top:3rem;">
+      <div class="team-role-card" data-tilt>
+        <div class="role-count">10</div>
+        <h3>Engineers</h3>
+        <p>Frontend, backend, database, and hardware specialists shipping products you can try today.</p>
+        <div class="role-skills">
+          <span>Frontend</span><span>Backend</span><span>Database</span><span>Hardware</span>
+        </div>
+      </div>
+      <div class="team-role-card" data-tilt>
+        <div class="role-count">2</div>
+        <h3>Strategists</h3>
+        <p>Marketing and PR driving partnerships, outreach, and growth across Rwanda.</p>
+        <div class="role-skills">
+          <span>Marketing</span><span>PR</span><span>B2B</span><span>Strategy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTOR CTA -->
+<section class="investor-strip">
+  <div class="container">
+    <p>We're formalizing as a company and scaling products already live in schools across Rwanda. We're seeking <strong>$50,000</strong> in investment and strategic partnerships to launch nationally.</p>
+    <a href="{% url 'connect' %}" class="btn btn-primary">Partner or Invest →</a>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section section-dark" id="roadmap">
+  <div class="container">
+    <div class="section-tag light">What's Next</div>
+    <h2 class="section-title light">Our Roadmap.</h2>
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-num">01</div>
+        <div class="roadmap-body">
+          <h3>Register the Company</h3>
+          <p>Formalize The Alliance as a legal business entity post-graduation, enabling contracts, banking and official partnerships.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-num">02</div>
+        <div class="roadmap-body">
+          <h3>License &amp; Scale Products</h3>
+          <p>Sell our Digital Voting System and other software to schools and organizations across Rwanda as paid solutions.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-num">03</div>
+        <div class="roadmap-body">
+          <h3>National Pharmacy Launch</h3>
+          <p>Deploy our pharmacy management system nationwide with institutional health partners.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-num">04</div>
+        <div class="roadmap-body">
+          <h3>VR &amp; Hardware Expansion</h3>
+          <p>Launch the VR education project and continue advancing our drone technology for commercial use.</p>
+        </div>
+      </div>
+    </div>
+    <div class="roadmap-cta">
+      <p>We're projecting <strong>$50,000</strong> to scale, formalize, and bring all of this to life.</p>
+      <a href="{% url 'connect' %}" class="btn btn-primary">Become a Partner →</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'alliance/base.html' %}
+{% load static %}
+
+{% block title %}Connect With Us — The Alliance{% endblock %}
+
+{% block content %}
+<section class="connect-hero">
+  <div class="particles-wrap" data-particles aria-hidden="true">
+    <canvas data-particles data-particle-color="234, 88, 12"></canvas>
+  </div>
+  <div class="hero-grid-overlay"></div>
+  <div class="container">
+    <div class="section-tag light">Get Involved</div>
+    <h1 class="connect-title">Let's Build<br/>Something Together.</h1>
+    <p class="connect-sub">Whether you're an investor, a strategic partner, a donor, or someone who simply believes in what we're doing — we'd love to hear from you.</p>
+  </div>
+</section>
+
+<section class="connect-section">
+  <div class="container connect-grid">
+
+    <div class="connect-info">
+      <h2>Why Connect?</h2>
+      <div class="connect-reasons">
+        <div class="reason">
+          <div class="reason-icon">💼</div>
+          <div>
+            <h4>Investors</h4>
+            <p>We're projecting $50,000 to scale our existing products, launch the pharmacy system nationally, and build our VR project.</p>
+          </div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon">🤝</div>
+          <div>
+            <h4>Strategic Partners</h4>
+            <p>Schools, hospitals, businesses — if our software solves a problem you have, let's talk deployment and licensing.</p>
+          </div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon">❤️</div>
+          <div>
+            <h4>Donors &amp; Supporters</h4>
+            <p>Believe in student innovation? Even a small contribution funds a course, a server, or a hardware component that keeps us building.</p>
+          </div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon">🌱</div>
+          <div>
+            <h4>Mentors &amp; Advisors</h4>
+            <p>We're hungry to learn. If you have expertise in B2B sales, legal structuring, or tech scaling — we'd value your guidance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connect-form-wrap">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="post" class="connect-form" novalidate>
+        {% csrf_token %}
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>{{ form.full_name.label }}</label>
+            {{ form.full_name }}
+            {% if form.full_name.errors %}<div class="form-error">{{ form.full_name.errors.0 }}</div>{% endif %}
+          </div>
+          <div class="form-group">
+            <label>{{ form.email.label }}</label>
+            {{ form.email }}
+            {% if form.email.errors %}<div class="form-error">{{ form.email.errors.0 }}</div>{% endif %}
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>{{ form.phone.label }}</label>
+            {{ form.phone }}
+          </div>
+          <div class="form-group">
+            <label>{{ form.location.label }}</label>
+            {{ form.location }}
+            {% if form.location.errors %}<div class="form-error">{{ form.location.errors.0 }}</div>{% endif %}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>{{ form.company.label }}</label>
+          {{ form.company }}
+        </div>
+
+        <div class="form-group">
+          <label>{{ form.purpose.label }}</label>
+          {{ form.purpose }}
+          {% if form.purpose.errors %}<div class="form-error">{{ form.purpose.errors.0 }}</div>{% endif %}
+        </div>
+
+        <div class="form-group" id="donation-wrap" style="display:none;">
+          <label>{{ form.donation_amount.label }}</label>
+          {{ form.donation_amount }}
+        </div>
+
+        <div class="form-group">
+          <label>{{ form.message.label }} <span class="required">*</span></label>
+          {{ form.message }}
+          {% if form.message.errors %}<div class="form-error">{{ form.message.errors.0 }}</div>{% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Send Message →</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Show donation field only when purpose is donor
+  const purposeSelect = document.querySelector('select[name="purpose"]');
+  const donationWrap  = document.getElementById('donation-wrap');
+  function toggleDonation() {
+    donationWrap.style.display = purposeSelect.value === 'donor' ? 'block' : 'none';
+  }
+  purposeSelect.addEventListener('change', toggleDonation);
+  toggleDonation();
+</script>
+{% endblock %}
