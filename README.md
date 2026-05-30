@@ -33,6 +33,38 @@ Default is **light** (orange & white). Use **Dark mode** in the nav to switch to
 - Voting: https://safe-vote-upgrade.vercel.app
 - CanteenPro: https://ben2.pythonanywhere.com
 
+## Deploying on Render (recommended)
+
+Your repo is ready for [Render](https://render.com) with GitHub auto-deploy.
+
+### Option A — Blueprint (easiest)
+
+1. In Render → **New** → **Blueprint** → connect `benrhema/Alliance_website`.
+2. Apply `render.yaml` (creates web service + free PostgreSQL).
+3. Wait for the first deploy to finish.
+
+### Option B — Manual web service
+
+1. **New** → **Web Service** → connect the GitHub repo.
+2. Settings:
+   - **Runtime:** Python 3
+   - **Build command:** `./build.sh`
+   - **Start command:** `gunicorn alliance_website.wsgi:application --bind 0.0.0.0:$PORT`
+3. **New** → **PostgreSQL** (free), then link it to the web service (Render sets `DATABASE_URL`).
+4. **Environment variables:**
+
+| Key | Value |
+|-----|--------|
+| `DEBUG` | `false` |
+| `SECRET_KEY` | Generate a random string |
+| `PYTHON_VERSION` | `3.12.3` |
+
+`RENDER_EXTERNAL_HOSTNAME` and `DATABASE_URL` are set automatically by Render.
+
+5. After deploy: open `https://YOUR-SERVICE.onrender.com/admin/login/` (admin user created by `build.sh`).
+
+**Note:** SQLite is not used on Render — PostgreSQL is required so submissions and logins persist across deploys.
+
 ## Deploying on PythonAnywhere
 
 1. Upload this project (or clone from Git) into your PythonAnywhere account.
